@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EnrollmentsComponent } from './pages/enrollments/enrollments.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AdoptionsComponent } from './pages/adoptions/adoptions.component';
  
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HomeComponent } from './pages/home/home.component';
     ContactComponent,
     FooterComponent,
     EnrollmentsComponent,
-    HomeComponent
+    HomeComponent,
+    AdoptionsComponent
   ],
   imports: [
     BrowserModule,

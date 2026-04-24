@@ -14,7 +14,7 @@ export interface Enrollment {
 })
 export class EnrollmentService {
 
-  private apiUrl = 'http://localhost:8081/enrollments';
+  private apiUrl = 'http://localhost:8082/enrollments';
   constructor(private http: HttpClient) { }
 
   //GET - listar
