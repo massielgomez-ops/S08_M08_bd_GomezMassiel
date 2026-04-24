@@ -1,33 +1,39 @@
-CREATE DATABASE EduSmartDB;
+IF DB_ID('EduSmartDB') IS NULL
+BEGIN
+    CREATE DATABASE EduSmartDB;
+END;
 GO
 
 USE EduSmartDB;
 GO
 
-CREATE TABLE Courses (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    Title VARCHAR(100),
-    Description VARCHAR(255),
-    Price DECIMAL(10,2)
-);
-CREATE TABLE Enrollments (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    Name VARCHAR(100),
-    Course VARCHAR(100),
-    Date DATE
-);
+IF OBJECT_ID('dbo.Adoptions', 'U') IS NOT NULL
+BEGIN
+    DROP TABLE dbo.Adoptions;
+END;
+GO
 
-INSERT INTO Courses (Title, Description, Price)
-VALUES 
-('Angular Básico	', 'Aprende desde cero', 100),
-('SQL Server', 'Base de datos profesional', 120);
+CREATE TABLE dbo.Adoptions (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    PetName VARCHAR(80) NOT NULL,
+    Species VARCHAR(40) NOT NULL,
+    Age INT NOT NULL,
+    AdopterName VARCHAR(120) NOT NULL,
+    Phone VARCHAR(30) NOT NULL,
+    AdoptionDate DATE NOT NULL,
+    Status VARCHAR(30) NOT NULL,
+    Description VARCHAR(255) NULL
+);
+GO
 
-INSERT INTO Enrollments (Name, Course, Date)
+INSERT INTO dbo.Adoptions
+    (PetName, Species, Age, AdopterName, Phone, AdoptionDate, Status, Description)
 VALUES
-('Ana Torres', 'Angular Básico', '2026-04-01'),
-('Luis Pérez', 'SQL Server', '2026-04-05');
+    ('Luna', 'Perro', 2, 'Mariana Flores', '987654321', '2026-04-10', 'Pendiente', 'Rescatada y vacunada.'),
+    ('Milo', 'Gato', 1, 'Carlos Rojas', '912345678', '2026-04-12', 'Aprobada', 'Necesita hogar sin otros gatos.'),
+    ('Nina', 'Perro', 4, 'Andrea Vega', '956123789', '2026-04-20', 'En seguimiento', 'Muy sociable con ninos.');
+GO
 
-SELECT * FROM Courses;
-SELECT * FROM Enrollments;
+SELECT * FROM dbo.Adoptions;
 
 
