@@ -1,0 +1,153 @@
+<section class="adoptions-page">
+  <header class="hero-panel">
+    <div class="hero-copy">
+      <span class="eyebrow">Huellitas con hogar</span>
+      <h2>Centro de Adopciones de Mascotas</h2>
+      <p>
+        Registra, organiza y da seguimiento a cada adopción desde un espacio cálido, claro y pensado para cada
+        mascota.
+      </p>
+    </div>
+
+    <div class="hero-cards">
+      <article class="mini-card">
+        <span class="mini-label">Pendientes</span>
+        <strong>{{ pendingCount }}</strong>
+        <p>Mascotas esperando conocer a su nueva familia.</p>
+      </article>
+
+      <article class="mini-card accent">
+        <span class="mini-label">Adopciones logradas</span>
+        <strong>{{ approvedCount }}</strong>
+        <p>Historias que ya encontraron un hogar lleno de cariño.</p>
+      </article>
+
+      <article class="mini-card soft">
+        <span class="mini-label">En seguimiento</span>
+        <strong>{{ trackingCount }}</strong>
+        <p>Procesos en curso para asegurar una adopción responsable.</p>
+      </article>
+    </div>
+  </header>
+
+  <p class="error-banner" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <div class="workspace-grid">
+    <section class="panel form-panel">
+      <div class="panel-heading">
+        <div>
+          <span class="section-tag">Formulario</span>
+          <h3>{{ editMode ? 'Editar adopcion' : 'Nueva adopcion' }}</h3>
+        </div>
+        <p>Completa los campos para guardar o actualizar un registro.</p>
+      </div>
+
+      <form class="adoption-form" (ngSubmit)="save()" #adoptionForm="ngForm">
+        <div class="field field-full">
+          <label for="petName">Nombre de la mascota</label>
+          <input id="petName" type="text" [(ngModel)]="adoption.petName" name="petName" placeholder="Ej: Luna" required />
+        </div>
+
+        <div class="field">
+          <label for="species">Especie</label>
+          <input id="species" type="text" [(ngModel)]="adoption.species" name="species" placeholder="Ej: Perro o Gato" required />
+        </div>
+
+        <div class="field field-small">
+          <label for="age">Edad</label>
+          <input id="age" type="number" [(ngModel)]="adoption.age" name="age" placeholder="0" min="0" required />
+        </div>
+
+        <div class="field">
+          <label for="adopterName">Nombre del adoptante</label>
+          <input id="adopterName" type="text" [(ngModel)]="adoption.adopterName" name="adopterName" placeholder="Ej: Mariana Flores" required />
+        </div>
+
+        <div class="field">
+          <label for="phone">Telefono</label>
+          <input id="phone" type="text" [(ngModel)]="adoption.phone" name="phone" placeholder="Ej: 987654321" required />
+        </div>
+
+        <div class="field">
+          <label for="adoptionDate">Fecha de adopcion</label>
+          <input id="adoptionDate" type="date" [(ngModel)]="adoption.adoptionDate" name="adoptionDate" required />
+        </div>
+
+        <div class="field">
+          <label for="status">Estado</label>
+          <select id="status" [(ngModel)]="adoption.status" name="status" required>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Aprobada">Aprobada</option>
+            <option value="En seguimiento">En seguimiento</option>
+          </select>
+        </div>
+
+        <div class="field field-full">
+          <label for="description">Descripcion</label>
+          <textarea id="description" [(ngModel)]="adoption.description" name="description" rows="4" placeholder="Notas sobre la mascota"></textarea>
+        </div>
+
+        <div class="field field-full actions-row">
+          <button type="submit">{{ editMode ? 'Actualizar' : 'Registrar' }}</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel list-panel">
+      <div class="panel-heading">
+        <div>
+          <span class="section-tag">Listado</span>
+          <h3>Adopciones registradas</h3>
+        </div>
+        <p>Consulta cada adopción con un formato más claro y legible.</p>
+      </div>
+
+      <p class="loading-text" *ngIf="loading">Cargando adopciones...</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Mascota</th>
+              <th>Especie</th>
+              <th>Edad</th>
+              <th>Adoptante</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of adoptions">
+              <td>
+                <div class="pet-cell">
+                  <strong>{{ item.petName }}</strong>
+                  <span>{{ item.description || 'Sin descripción' }}</span>
+                </div>
+              </td>
+              <td>{{ item.species }}</td>
+              <td>{{ item.age }}</td>
+              <td>{{ item.adopterName }}</td>
+              <td>{{ item.adoptionDate | date }}</td>
+              <td>
+                <span class="status-badge" [class.pendiente]="item.status === 'Pendiente'" [class.aprobada]="item.status === 'Aprobada'" [class.seguimiento]="item.status === 'En seguimiento'">
+                  {{ item.status }}
+                </span>
+              </td>
+              <td>
+                <div class="row-actions">
+                  <button class="btn-edit" type="button" (click)="edit(item)">Editar</button>
+                  <button class="btn-delete" type="button" (click)="remove(item.id)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="empty-text" *ngIf="!loading && adoptions.length === 0">
+          Aún no hay adopciones registradas. Puedes crear la primera desde el formulario.
+        </p>
+      </div>
+    </section>
+  </div>
+</section>

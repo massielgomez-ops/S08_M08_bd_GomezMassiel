@@ -1,0 +1,10 @@
+<section id="contact">
+    <h2>Contacto</h2>
+    <p>Escribenos para coordinar visitas y adopciones responsables.</p>
+    <input type="text" placeholder="Tu nombre" [(ngModel)]="nombre">
+    <input type="email" placeholder="Tu correo" [(ngModel)]="email">
+    <textarea placeholder="Cuentanos que mascota te interesa" [(ngModel)]="mensaje"></textarea>
+    <br><br>
+
+    <button (click)="enviar()">Enviar</button>
+</section>

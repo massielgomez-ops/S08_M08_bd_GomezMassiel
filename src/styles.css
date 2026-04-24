@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+    --bg: #fff5e8;
+    --surface: rgba(255, 250, 242, 0.9);
+    --surface-strong: #ffffff;
+    --text: #4d2a17;
+    --muted: #7f5a45;
+    --line: rgba(194, 120, 66, 0.22);
+    --primary: #e46f2f;
+    --primary-strong: #b84b1f;
+    --secondary: #d97706;
+    --danger: #b42318;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Nunito', 'Trebuchet MS', sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(255, 193, 124, 0.32), transparent 34%),
+        radial-gradient(circle at 90% 16%, rgba(253, 224, 181, 0.48), transparent 33%),
+        linear-gradient(180deg, #fffaf3 0%, var(--bg) 100%);
+    color: var(--text);
+}
+
+section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    font-family: 'Baloo 2', 'Trebuchet MS', sans-serif;
+    letter-spacing: 0.02em;
+}
+
+p {
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+    filter: brightness(0.98);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(15, 118, 110, 0.2);
+}
