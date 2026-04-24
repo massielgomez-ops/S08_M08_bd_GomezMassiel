@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # EduSmart_bd
 =======
 <<<<<<< HEAD
@@ -65,3 +66,6 @@ For more information on using the Angular CLI, including detailed command refere
 # S08_M08_fe_GomezMassiel
 >>>>>>> c97d151b4b58474b2fb25a90861ca18997e2d45c
 >>>>>>> a7aeb9c7023f58c2c556572115fdccd8511045bd
+=======
+# S08_M08_bd_GomezMassiel
+>>>>>>> fe1237996b8c182ef13ff1f9a2a6e0f4ac68d6d4
